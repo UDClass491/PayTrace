@@ -32,7 +32,10 @@ public class HttpPost {
      * @throws  expection  generic exception from various objects like  URL, HTTPsUrlConnection, DataStreametc
      *            If one get ones of these exception you must quit for they are unrecoverable 
      */
-    private  void sendPost(String urlParameters) throws Exception {
+    private  void sendPost(String methodCommandString, String urlParameters) throws Exception {
+        String sendComand = "PARMLIST=UN~demo123|PSWD~demo123|TERMS~Y|";
+        sendComand += "METHOD~" + methodCommandString + "";
+        sendComand += urlParameters;
         URL url = new URL(_urlString);
         HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
@@ -47,13 +50,13 @@ public class HttpPost {
         connection.setDoOutput(true);
 
         try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) {
-            wr.writeBytes(urlParameters);
+            wr.writeBytes(sendComand);
             wr.flush();
         }
 
         int responseCode = connection.getResponseCode();
         System.out.println("\nSending 'POST' request to URL : " + _urlString);
-        System.out.println("Post parameters : " + urlParameters);
+        System.out.println("Post parameters : " + sendComand);
         System.out.println("Response Code : " + responseCode);
 
         StringBuffer response;
@@ -75,7 +78,7 @@ public class HttpPost {
         HttpPost https = new HttpPost(PaytraceURLString);
 
         System.out.println("Testing - Send Http POST request");
-        https.sendPost(GateWayParms.getParmsToCreateSalesTrans());
+        https.sendPost("ProcessTranx|",GateWayParms.getParmsToCreateSalesTrans());
     }
     
 }
