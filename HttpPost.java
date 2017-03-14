@@ -1,4 +1,4 @@
-
+package cps491_paytrace;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -34,7 +34,7 @@ public class HttpPost {
      */
     private  void sendPost(String methodCommandString, String urlParameters) throws Exception {
         String sendComand = "PARMLIST=UN~demo123|PSWD~demo123|TERMS~Y|";
-        sendComand += "METHOD~" + methodCommandString + "";
+        sendComand += "Method~" + methodCommandString;
         sendComand += urlParameters;
         URL url = new URL(_urlString);
         HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
@@ -78,7 +78,7 @@ public class HttpPost {
         HttpPost https = new HttpPost(PaytraceURLString);
 
         System.out.println("Testing - Send Http POST request");
-        https.sendPost("ProcessTranx|",GateWayParms.getParmsToCreateSalesTrans());
+        https.sendPost("CreateCustomer",CreateUser.getUserInfo());
     }
     
 }
