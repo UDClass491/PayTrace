@@ -71,11 +71,11 @@ public class HttpPost {
     }
 
     public static void main(String[] args) throws Exception {
-            HttpPost https = new HttpPost(GateWayParms.PaytraceURLString);
+        String PaytraceURLString = "https://paytrace.com/api/default.pay";
+        HttpPost https = new HttpPost(PaytraceURLString);
 
-            System.out.println("Testing - Send Http POST request");
-            https.sendPost(GateWayParms.getParmsToCreateSalesTrans());
-
+        System.out.println("Testing - Send Http POST request");
+        https.sendPost(GateWayParms.getParmsToCreateSalesTrans());
     }
     
 }
